@@ -1,0 +1,1 @@
+angular.module('ngCountries', ['ngRoute', 'ngAnimate']);
