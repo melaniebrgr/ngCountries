@@ -1,0 +1,29 @@
+{
+  "name": "ngcountries",
+  "version": "1.0.0",
+  "description": "Angular application to visualize data about countries and their capitals",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melaniebrgr/ngCountries.git"
+  },
+  "author": "Melanie Burger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melaniebrgr/ngCountries/issues"
+  },
+  "homepage": "https://github.com/melaniebrgr/ngCountries#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-connect": "^4.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-ngmin": "^0.3.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-usemin": "^0.3.23"
+  }
+}
