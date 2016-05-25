@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ngCountries">
 <head>
 	<meta charset="UTF-8">
 	<title>ngCountries</title>
@@ -8,9 +8,14 @@
 	<script src="./bower_components/angular-route/angular-route.min.js"></script>
 	<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
 	<!-- endbuild -->
+	<script src="./js/app.js"></script>
+<!-- 	<script src="./js/views.js"></script>
+	<script src="./views/home/home.js"></script> -->
 </head>
 <body>
-	<h1>Countries&nbsp;&amp;&nbsp;Capitals</h1>
+	<header>
+		<h1>Countries&nbsp;&amp;&nbsp;Capitals</h1>
+	</header>
 	<main ng-view></main>
 </body>
 </html>
