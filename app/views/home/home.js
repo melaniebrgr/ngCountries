@@ -1,9 +1,10 @@
-viewsModule.config(function($routeProvider) {
+viewsModule.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/', {
-		templateUrl: './views/home/home.html',
-		controller: 'HomeCtrl as home'
-	});
-});
-viewsModule.controller('HomeCtrl', function() {
-	this.test = 'TEST';
-});
+        templateUrl: './views/home/home.html',
+        controller: 'HomeCtrl',
+        controllerAs: 'home'
+    });
+}])
+	.controller('HomeCtrl', function() {
+        // Nothing here yet.
+    });
