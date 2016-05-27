@@ -5,6 +5,7 @@ viewsModule
 	        controller: 'HomeCtrl'
 	    });
 	}])
-	.controller('HomeCtrl', function() {
-        // Nothing here yet.
+	.controller('HomeCtrl', function(test, countriesList) {
+        console.log(test);
+        console.log(countriesList);
     });

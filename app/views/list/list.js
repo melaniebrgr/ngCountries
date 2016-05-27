@@ -24,7 +24,7 @@ viewsModule
 
 		},
 		function(data, status, headers, config) {
-			console.log('Failure :(');
+			console.log('List countries failure :(');
 		});
 
 		$scope.goToCountry = function(country) {
