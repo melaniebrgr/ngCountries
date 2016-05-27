@@ -1,1 +1,1 @@
-angular.module('ngCountries', ['ngRoute', 'viewsModule']);
+angular.module('ngCountries', ['ngRoute', 'viewsModule'/*, 'libraryModule'*/ ]);
