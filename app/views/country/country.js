@@ -5,7 +5,6 @@ viewsModule.config(['$routeProvider', function($routeProvider) {
 		controllerAs: 'country'
 	});
 }])
-	.controller('countryCtrl', function() {
-		this.countryCode = 'test';
-		// this.countryCode = $routeParams.code;
+	.controller('countryCtrl', function($scope, $routeParams) {
+		$scope.countryCode = $routeParams.code;
 	});

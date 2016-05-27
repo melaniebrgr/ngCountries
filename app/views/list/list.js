@@ -6,24 +6,26 @@ viewsModule.config(['$routeProvider', function($routeProvider) {
 	});
 }])
 	.controller('listCtrl', function($http, $scope) {
-		this.test = 'TEST';
-		// this.data;
 		$scope.data
 		$http({
 			method: 'GET',
 			url: 'http://api.geonames.org/countryInfo',
+			cache: true,
 			params: {
 				username: 'melaniebrgr',
 				type: 'JSON'
 			}
 		})
 		.then(function(data, status, headers, config) {
-			// this.data = data.data.geonames;
 			$scope.data = data.data.geonames;
 			console.log($scope.data );
 
 		},
 		function(data, status, headers, config) {
 			console.log('Failure :(');
-		});		
+		});
+
+		$scope.goToCountry = function(countryCode) {
+			window.location = '/#/countries/' + countryCode;
+		}
 	});
