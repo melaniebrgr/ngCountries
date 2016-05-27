@@ -2,24 +2,28 @@
 <table class="country">
 	<tr>
 		<dt>Population of country:</dt>
-		<dt></dt>
+		<dt>{{ selectedCountry.population | number }}</dt>
 	</tr>
 	<tr>
 		<dt>Area:</dt>
-		<dt></dt>
+		<dt>{{ selectedCountry.areaInSqKm | number }}</dt>
 	</tr>
 	<tr>
 		<dt>Capital:</dt>
-		<dt></dt>
+		<dt>{{ selectedCountry.capital }}</dt>
 	</tr>
 	<tr>
 		<dt>Population of capital:</dt>
-		<dt></dt>
+		<dt>test</dt>
 	</tr>
 	<tr>
 		<dt>Neighbours:</dt>
-		<dt></dt>
+		<dt>
+			<span ng-repeat="neighbour in neighbours">{{ neighbour.countryName }}{{$last ? '' : ', '}}</span>
+		</dt>
 	</tr>
 </table>
 <img src="#" alt="country map">
-<img src="#" alt="country flag">
+<!-- <img ng-src="http://www.geonames.org/flags/x/{{ countryCode }}.gif" alt="country flag"> -->
+<button type="button" name="homeBtn" onclick="window.location.href='/#'" >Home</button>
+<button type="button" name="browseCountriesBtn" onclick="window.location.href='/#/countries'">Browse Countries</button>
