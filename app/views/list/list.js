@@ -26,6 +26,6 @@ viewsModule.config(['$routeProvider', function($routeProvider) {
 		});
 
 		$scope.goToCountry = function(countryCode) {
-			window.location = '/#/countries/' + countryCode;
+			window.location.href = `/#/countries/${countryCode}`;
 		}
 	});

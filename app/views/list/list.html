@@ -1,4 +1,4 @@
-<table>
+<table class="list">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -12,12 +12,12 @@
 	<tbody>
 		<tr ng-repeat="country in data" ng-click="goToCountry(country.countryCode)">
 			<td>{{ country.countryName }}</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>{{ country.countryCode }}</td>
+			<td>{{ country.capital }}</td>
+			<td>{{ country.areaInSqKm }}</td>
+			<td>{{ country.population }}</td>
+			<td>{{ country.continent }}</td>
 		</tr>
 	</tbody>
 </table>
-<button type="button" name="homeBtn">Home</button>
+<button type="button" name="homeBtn" onclick="window.location.href='/#'" >Home</button>
