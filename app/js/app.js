@@ -1,4 +1,10 @@
 angular.module('ngCountries', ['ngRoute', 'viewsModule'])
+	.config(function($routeProvider) {
+	    $routeProvider.when('/error', {
+	    	template: '<p>Error – page not found</p>'
+	    })
+	    .otherwise('/error');		
+	})
 	.constant('GEONAMES_USERNAME', 'melaniebrgr')
 	.constant('GEONAMES_TYPE', 'JSON')
 	.constant('GEONAMES_URL', 'http://api.geonames.org')
@@ -31,11 +37,11 @@ to do:
 -|- WTF country <table>
 -|- write service that gets all countries ... ^am I doing it right?
 -|- write service that looks up country info based on country code (retructure array into hash table?)
--- redo country controller logic to use country code from routeParams to set rest of view info
--- clicking on neighbiuring countries brings to neighbours page
+-|- redo country controller logic to use country code from routeParams to set rest of view info
+-|- clicking on neighbiuring countries brings to neighbours page
 -- set up AJAX request for capital info
--- handle Antarctica and other anomolous "countries"
--- resolve country code to make sure valid before loading page using hasOwnProperty
+-|- handle Antarctica and other anomolous "countries"
+-|- resolve country code to make sure valid before loading page using hasOwnProperty
 -|- flag image
 -|- map image
 -- add error route

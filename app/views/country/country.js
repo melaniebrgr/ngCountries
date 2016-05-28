@@ -4,24 +4,27 @@ viewsModule
 			templateUrl: './views/country/country.html',
 			controller: 'countryCtrl',
 			resolve: {
-				code: function($route, $location) {
+				code: function($route, $location, $q, countriesHash) {
 					const countryCode = $route.current.params.code;
-					if ( !/^[A-Z]{2}$/.test(countryCode)) {
-		                // window.location.href('/#/error');
-		                console.log(countryCode)
-		                return false;						
-					} 
-					return countryCode;
+					let countryInList = false;
+
+					countriesHash.then( response => {
+						countryInList = response.hasOwnProperty(countryCode);
+						console.log(countryInList);
+						if ( !/^[A-Z]{2}$/.test(countryCode) || !countryInList ) {
+			                window.location.href = '/';
+			                return false;						
+						} 
+						return countryCode;						
+					});
 				}
 			}
 		});
 	}])
 	.controller('countryCtrl', function($scope, $routeParams, $http, countriesHash, GEONAMES_USERNAME, GEONAMES_TYPE, GEONAMES_URL) {
+		
 		$scope.countryCode = $routeParams.code;
-
-        countriesHash.then(function(response) {
-        	$scope.selectedCountry = response[$scope.countryCode];
-        });		
+        countriesHash.then( response => $scope.selectedCountry = response[$scope.countryCode]);	        	
 
 		// Get neighbouring countries
 		$http({
@@ -33,11 +36,10 @@ viewsModule
 				type: GEONAMES_TYPE
 			}
 		})
-		.then(function(data) {
-			$scope.neighbours = data.data.geonames[0] ? data.data.geonames : [{countryName: 'None'}];
-		}, function() {
-			console.log('Neighbour failure :(');
-		});
+		.then( data => {
+			console.log(data);
+			$scope.neighbours = data.data.hasOwnProperty('geonames') && data.data.geonames.length ? data.data.geonames : [{countryName: 'None'}];
+		}, () => console.log('Neighbour failure :('));
 
 		//Get capital info
 		$http({
@@ -49,9 +51,11 @@ viewsModule
 				type: GEONAMES_TYPE
 			}
 		})
-		.then(function(data) {
-			// console.log('capital', data);
-		}, function() {
-			console.log('Capital failure :(');
-		});
+		.then( data => {}, () => console.log('Capital failure :('));
+
+		$scope.goToNeighbour = countryCode => {
+			if ($scope.neighbours[0].countryName !== 'None') {
+				window.location.href = `/#/countries/${countryCode}`;
+			}
+		};		
 	});

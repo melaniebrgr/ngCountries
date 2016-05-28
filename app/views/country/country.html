@@ -1,4 +1,5 @@
-<h2>Country code: {{ countryCode }}</h2>
+<h2>{{ selectedCountry.countryName }}</h2>
+<h3>Country code: {{ countryCode }}</h3>
 <table class="country">
 	<tr>
 		<td>Population of country:</td>
@@ -10,7 +11,7 @@
 	</tr>
 	<tr>
 		<td>Capital:</td>
-		<td>{{ selectedCountry.capital }}</td>
+		<td>{{ selectedCountry.capital || 'None'}}</td>
 	</tr>
 	<tr>
 		<td>Population of capital:</td>
@@ -19,11 +20,11 @@
 	<tr>
 		<td>Neighbours:</td>
 		<td>
-			<span ng-repeat="neighbour in neighbours">{{ neighbour.countryName }}{{ $last ? '' : ', ' }}</span>
+			<span ng-repeat="neighbour in neighbours" ng-click="goToNeighbour(neighbour.countryCode)">{{ neighbour.countryName }}{{ $last ? '' : ', ' }}</span>
 		</td>
 	</tr>
 </table>
 <img class="map" src="http://www.geonames.org/img/country/250/{{ selectedCountry.countryCode | uppercase }}.png" alt="country map">
 <img class="flag" ng-src="http://www.geonames.org/flags/x/{{ selectedCountry.countryCode | lowercase }}.gif" alt="country flag"><br>
-<button type="button" name="homeBtn" onclick="window.location.href='/#'" >Home</button>
+<button type="button" name="homeBtn" onclick="window.location.href='/'" >Home</button>
 <button type="button" name="browseCountriesBtn" onclick="window.location.href='/#/countries'">Browse Countries</button>
