@@ -10,7 +10,6 @@ viewsModule
 
 					countriesHash.then( response => {
 						countryInList = response.hasOwnProperty(countryCode);
-						console.log(countryInList);
 						if ( !/^[A-Z]{2}$/.test(countryCode) || !countryInList ) {
 			                window.location.href = '/';
 			                return false;						
@@ -24,7 +23,24 @@ viewsModule
 	.controller('countryCtrl', function($scope, $routeParams, $http, countriesHash, GEONAMES_USERNAME, GEONAMES_TYPE, GEONAMES_URL) {
 		
 		$scope.countryCode = $routeParams.code;
-        countriesHash.then( response => $scope.selectedCountry = response[$scope.countryCode]);	        	
+        countriesHash.then( response => {
+        	$scope.selectedCountry = response[$scope.countryCode]
+
+			//Get capital info
+			$http({
+				method: 'GET',
+				url: `${GEONAMES_URL}/search`,
+				params: {
+					q: $scope.selectedCountry.capital,
+					name: $scope.selectedCountry.capital,
+					name_equals: $scope.selectedCountry.capital,
+					isNameRequired: true,
+					username: GEONAMES_USERNAME,
+					type: GEONAMES_TYPE
+				}
+			})
+			.then( response => $scope.capital = response.data.geonames[0], () => console.log('Capital failure :('));     	
+        });	        	
 
 		// Get neighbouring countries
 		$http({
@@ -37,21 +53,8 @@ viewsModule
 			}
 		})
 		.then( data => {
-			console.log(data);
 			$scope.neighbours = data.data.hasOwnProperty('geonames') && data.data.geonames.length ? data.data.geonames : [{countryName: 'None'}];
 		}, () => console.log('Neighbour failure :('));
-
-		//Get capital info
-		$http({
-			method: 'GET',
-			url: `${GEONAMES_URL}/search`,
-			params: {
-				q: 'Ottawa',
-				username: GEONAMES_USERNAME,
-				type: GEONAMES_TYPE
-			}
-		})
-		.then( data => {}, () => console.log('Capital failure :('));
 
 		$scope.goToNeighbour = countryCode => {
 			if ($scope.neighbours[0].countryName !== 'None') {
