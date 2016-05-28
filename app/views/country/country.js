@@ -16,7 +16,7 @@ viewsModule
 			}
 		});
 	}])
-	.controller('countryCtrl', function($scope, $routeParams, $http, countriesHash) {
+	.controller('countryCtrl', function($scope, $routeParams, $http, countriesHash, GEONAMES_USERNAME, GEONAMES_TYPE, GEONAMES_URL) {
 		$scope.countryCode = $routeParams.code;
 
         countriesHash.then(function(response) {
@@ -26,15 +26,15 @@ viewsModule
 		// Get neighbouring countries
 		$http({
 			method: 'GET',
-			url: 'http://api.geonames.org/neighbours',
+			url: `${GEONAMES_URL}/neighbours`,
 			params: {
 				country: $scope.countryCode,
-				username: 'melaniebrgr',
-				type: 'JSON'
+				username: GEONAMES_USERNAME,
+				type: GEONAMES_TYPE
 			}
 		})
 		.then(function(data) {
-			$scope.neighbours = data.data.geonames || [{countryName: 'None'}];
+			$scope.neighbours = data.data.geonames[0] ? data.data.geonames : [{countryName: 'None'}];
 		}, function() {
 			console.log('Neighbour failure :(');
 		});
@@ -42,11 +42,11 @@ viewsModule
 		//Get capital info
 		$http({
 			method: 'GET',
-			url: 'http://api.geonames.org/search',
+			url: `${GEONAMES_URL}/search`,
 			params: {
 				q: 'Ottawa',
-				username: 'melaniebrgr',
-				type: 'JSON'
+				username: GEONAMES_USERNAME,
+				type: GEONAMES_TYPE
 			}
 		})
 		.then(function(data) {
