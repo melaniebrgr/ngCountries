@@ -27,7 +27,6 @@ angular.module('ngCountries', ['ngRoute', 'viewsModule'])
 		}));
 	});
 
-
 /*
 to do:
 -|- WTF country <table>

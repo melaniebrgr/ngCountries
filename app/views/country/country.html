@@ -19,7 +19,7 @@
 	<tr>
 		<td>Neighbours:</td>
 		<td>
-			<span ng-repeat="neighbour in neighbours">{{ neighbour.countryName || 'no neighbours :(' }}{{ $last ? '' : ', ' }}</span>
+			<span ng-repeat="neighbour in neighbours">{{ neighbour.countryName }}{{ $last ? '' : ', ' }}</span>
 		</td>
 	</tr>
 </table>

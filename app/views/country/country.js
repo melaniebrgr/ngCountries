@@ -7,7 +7,8 @@ viewsModule
 				code: function($route, $location) {
 					const countryCode = $route.current.params.code;
 					if ( !/^[A-Z]{2}$/.test(countryCode)) {
-		                window.location.href('/#/error');
+		                // window.location.href('/#/error');
+		                console.log(countryCode)
 		                return false;						
 					} 
 					return countryCode;
@@ -15,9 +16,13 @@ viewsModule
 			}
 		});
 	}])
-	.controller('countryCtrl', function($scope, $routeParams, $http) {
+	.controller('countryCtrl', function($scope, $routeParams, $http, countriesHash) {
 		$scope.countryCode = $routeParams.code;
-		$scope.neighbours;
+
+        countriesHash.then(function(response) {
+        	$scope.selectedCountry = response[$scope.countryCode];
+        	// console.log($scope.selectedCountry);
+        });		
 
 		// Get neighbouring countries
 		$http({
@@ -29,10 +34,9 @@ viewsModule
 				type: 'JSON'
 			}
 		})
-		.then(function(data, status, headers, config) {
-			$scope.neighbours = data.data.geonames;
-			console.log('neighbours', $scope.neighbours);
-		}, function(data, status, headers, config) {
+		.then(function(data) {
+			$scope.neighbours = data.data.geonames || [{countryName: 'None'}];
+		}, function() {
 			console.log('Neighbour failure :(');
 		});
 
@@ -46,9 +50,9 @@ viewsModule
 				type: 'JSON'
 			}
 		})
-		.then(function(data, status, headers, config) {
-			console.log('capital', data);
-		}, function(data, status, headers, config) {
+		.then(function(data) {
+			// console.log('capital', data);
+		}, function() {
 			console.log('Capital failure :(');
 		});
 	});
