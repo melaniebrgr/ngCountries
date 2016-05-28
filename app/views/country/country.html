@@ -1,26 +1,26 @@
 <h2>Country code: {{ countryCode }}</h2>
 <table class="country">
 	<tr>
-		<dt>Population of country:</dt>
-		<dt>{{ selectedCountry.population | number }}</dt>
+		<td>Population of country:</td>
+		<td>{{ selectedCountry.population | number }}</td>
 	</tr>
 	<tr>
-		<dt>Area:</dt>
-		<dt>{{ selectedCountry.areaInSqKm | number }}</dt>
+		<td>Area:</td>
+		<td>{{ selectedCountry.areaInSqKm | number }}</td>
 	</tr>
 	<tr>
-		<dt>Capital:</dt>
-		<dt>{{ selectedCountry.capital }}</dt>
+		<td>Capital:</td>
+		<td>{{ selectedCountry.capital }}</td>
 	</tr>
 	<tr>
-		<dt>Population of capital:</dt>
-		<dt>test</dt>
+		<td>Population of capital:</td>
+		<td>test</td>
 	</tr>
 	<tr>
-		<dt>Neighbours:</dt>
-		<dt>
-			<span ng-repeat="neighbour in neighbours">{{ neighbour.countryName }}{{$last ? '' : ', '}}</span>
-		</dt>
+		<td>Neighbours:</td>
+		<td>
+			<span ng-repeat="neighbour in neighbours">{{ neighbour.countryName || 'no neighbours :(' }}{{ $last ? '' : ', ' }}</span>
+		</td>
 	</tr>
 </table>
 <img src="#" alt="country map">

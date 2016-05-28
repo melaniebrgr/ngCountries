@@ -2,7 +2,17 @@ viewsModule
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/countries/:code', {
 			templateUrl: './views/country/country.html',
-			controller: 'countryCtrl'
+			controller: 'countryCtrl',
+			resolve: {
+				code: function($route, $location) {
+					const countryCode = $route.current.params.code;
+					if ( !/^[A-Z]{2}$/.test(countryCode)) {
+		                window.location.href('/#/error');
+		                return false;						
+					} 
+					return countryCode;
+				}
+			}
 		});
 	}])
 	.controller('countryCtrl', function($scope, $routeParams, $http) {
@@ -20,7 +30,7 @@ viewsModule
 			}
 		})
 		.then(function(data, status, headers, config) {
-			$scope.neighbours = data.data.geonames || 'no neighbours :(';
+			$scope.neighbours = data.data.geonames;
 			console.log('neighbours', $scope.neighbours);
 		}, function(data, status, headers, config) {
 			console.log('Neighbour failure :(');

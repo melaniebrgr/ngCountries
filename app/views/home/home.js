@@ -5,7 +5,11 @@ viewsModule
 	        controller: 'HomeCtrl'
 	    });
 	}])
-	.controller('HomeCtrl', function(test, countriesList) {
-        console.log(test);
-        console.log(countriesList);
+	.controller('HomeCtrl', function(test, countriesList, countriesHash) {
+        countriesList.then(function(response) {
+        	console.log(response);
+        });
+        countriesHash.then(function(response) {
+        	console.log(response);
+        });
     });
