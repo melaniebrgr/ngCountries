@@ -23,7 +23,7 @@
 		</td>
 	</tr>
 </table>
-<img src="#" alt="country map">
-<!-- <img ng-src="http://www.geonames.org/flags/x/{{ countryCode }}.gif" alt="country flag"> -->
+<img class="map" src="http://www.geonames.org/img/country/250/{{ selectedCountry.countryCode | uppercase }}.png" alt="country map">
+<img class="flag" ng-src="http://www.geonames.org/flags/x/{{ selectedCountry.countryCode | lowercase }}.gif" alt="country flag"><br>
 <button type="button" name="homeBtn" onclick="window.location.href='/#'" >Home</button>
 <button type="button" name="browseCountriesBtn" onclick="window.location.href='/#/countries'">Browse Countries</button>

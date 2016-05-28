@@ -3,3 +3,6 @@ table.list {
 	height: 500px;
 	overflow-y: scroll;
 }
+img.flag {
+	width: 200px;
+}

@@ -21,7 +21,6 @@ viewsModule
 
         countriesHash.then(function(response) {
         	$scope.selectedCountry = response[$scope.countryCode];
-        	// console.log($scope.selectedCountry);
         });		
 
 		// Get neighbouring countries
