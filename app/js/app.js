@@ -1,4 +1,14 @@
 angular.module('ngCountries', ['ngRoute', 'viewsModule'])
+	.run(function($rootScope, $timeout) {
+	    $rootScope.$on('$routeChangeStart', function() {
+	        $rootScope.isLoading = true;
+	    });
+	    $rootScope.$on('$routeChangeSuccess', function() {
+	      $timeout(function() {
+	        $rootScope.isLoading = false;
+	      }, 1000);
+	    });
+	})
 	.config(function($routeProvider) {
 	    $routeProvider.when('/error', {
 	    	template: '<p>Error – page not found</p>'
@@ -46,5 +56,7 @@ to do:
 -|- map image
 -|- add error route
 -- animate between views
--- create a loading state that gets displayed when AJAX calls are being made
+-|- create a loading state that gets displayed when AJAX calls are being made
+-- build files
+-- push to gh-pages
 */

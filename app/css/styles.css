@@ -1,3 +1,6 @@
+html, body {
+	height: 100%;
+}
 table.list {
 	display: block;
 	height: 500px;
@@ -5,4 +8,19 @@ table.list {
 }
 img.flag {
 	width: 200px;
+}
+.loading {
+	position:relative;
+	height:100%;
+}
+.loading:before {
+	position:absolute;
+	content:"";
+	left:0;
+	bottom:0;
+	right:0;
+	top:0;
+	z-index:1000;
+	background:rgba(255,255,255,0.9) no-repeat center center;
+	background-image: url('../img/loading-animation.gif');
 }
