@@ -2,4 +2,3 @@ ngCountries.sublime-project
 ngCountries.sublime-workspace
 app/bower_components
 node_modules
-build/
