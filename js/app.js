@@ -113,7 +113,7 @@ viewsModule
 
 		$scope.goToNeighbour = countryCode => {
 			if ($scope.neighbours[0].countryName !== 'None') {
-				window.location.href = `/#/countries/${countryCode}`;
+				window.location.href = `/ngCountries/#/countries/${countryCode}`;
 			}
 		};		
 	});
