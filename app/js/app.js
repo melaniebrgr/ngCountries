@@ -1,3 +1,4 @@
+
 angular.module('ngCountries', ['ngRoute', 'ngAnimate', 'viewsModule'])
 	.run(function($rootScope, $timeout) {
 	    $rootScope.$on('$routeChangeStart', function() {
@@ -41,22 +42,3 @@ angular.module('ngCountries', ['ngRoute', 'ngAnimate', 'viewsModule'])
 			return countriesHash;
 		}));
 	});
-
-/*
-to do:
--|- WTF country <table>
--|- write service that gets all countries ... ^am I doing it right?
--|- write service that looks up country info based on country code (retructure array into hash table?)
--|- redo country controller logic to use country code from routeParams to set rest of view info
--|- clicking on neighbiuring countries brings to neighbours page
--|- set up AJAX request for capital info
--|- handle Antarctica and other anomolous "countries"
--|- resolve country code to make sure valid before loading page using hasOwnProperty
--|- flag image
--|- map image
--|- add error route
--- animate between views
--|- create a loading state that gets displayed when AJAX calls are being made
--- build files
--- push to gh-pages
-*/
