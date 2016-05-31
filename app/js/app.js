@@ -1,4 +1,4 @@
-angular.module('ngCountries', ['ngRoute', 'viewsModule'])
+angular.module('ngCountries', ['ngRoute', 'ngAnimate', 'viewsModule'])
 	.run(function($rootScope, $timeout) {
 	    $rootScope.$on('$routeChangeStart', function() {
 	        $rootScope.isLoading = true;
@@ -6,7 +6,7 @@ angular.module('ngCountries', ['ngRoute', 'viewsModule'])
 	    $rootScope.$on('$routeChangeSuccess', function() {
 	      $timeout(function() {
 	        $rootScope.isLoading = false;
-	      }, 1000);
+	      }, 250);
 	    });
 	})
 	.config(function($routeProvider) {
