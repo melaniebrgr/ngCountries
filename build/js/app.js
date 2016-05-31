@@ -131,6 +131,6 @@ viewsModule
         });
 
 		$scope.goToCountry = function(countryCode) {
-			window.location.href = `/#/countries/${countryCode}`;
+			window.location.href = `/ngCountries/#/countries/${countryCode}`;
 		}
 	});

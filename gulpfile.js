@@ -11,7 +11,7 @@ var paths = {
 	build: './build/**/*',
 	index: './app/index.html',
 	copy: [
-		'./img/loading-animation.gif'
+		'./img/*',
 		'./app/**/*.html',
 		'!./app/index.html',
 		'!./app/bower_components/**/*.html'
