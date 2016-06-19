@@ -1,4 +1,3 @@
-
 angular.module('ngCountries', ['ngRoute', 'ngAnimate', 'viewsModule'])
 	.run(function($rootScope, $timeout) {
 	    $rootScope.$on('$routeChangeStart', function() {
