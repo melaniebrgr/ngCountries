@@ -1,18 +1,17 @@
-describe('test route: /countries/:code', function() {
-	beforeEach(module('ngCountries'));
-	
-	it('should load the countries template', inject( function($location, $rootScope, $route, $httpBackend) {
-        $httpBackend.whenGET('./views/country/country.html').respond('...');
-        $httpBackend.expectGET('/api/current-user').respond({});	
+describe('test service: countriesList', function() {
+    beforeEach(module('ngCountries'));
 
-        $rootScope.$apply(function() {
-            $location.path('/countries/AD');
-        });
-	    $httpBackend.flush();
-	    expect($route.current.controller).toBe("countryCtrl");
-	    expect($route.current.loadedTemplateUrl).toBe("country.html");
+    it('should make an HTTP request to geonames API', inject(function(countriesList, $httpBackend, $http) {
+       $httpBackend.when('GET', 'http://api.geonames.org/countryInfo?type=JSON&username=melaniebrgr').respond(200,{testKey:'testVal'});
+			 $http.get('http://api.geonames.org/countryInfo?type=JSON&username=melaniebrgr').then(function (response) {console.log(response);});
 
+       var request = false;
+       countriesList.then(function() {
+           request = true;
+       });
+       $httpBackend.flush();
+       expect(request).toBeTruthy();
         $httpBackend.verifyNoOutstandingRequest();
-        $httpBackend.verifyNoOutstandingExpectation();
-	}));	
+    }));
+
 });
