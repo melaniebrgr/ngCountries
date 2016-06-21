@@ -13,7 +13,7 @@ angular.module('ngCountries', ['ngRoute', 'ngAnimate', 'viewsModule'])
 	    $routeProvider.when('/error', {
 	    	template: '<p>Error – page not found</p>'
 	    })
-	    .otherwise('/error');		
+	    .otherwise('/error');
 	})
 	.constant('GEONAMES_USERNAME', 'melaniebrgr')
 	.constant('GEONAMES_TYPE', 'JSON')
@@ -29,6 +29,9 @@ angular.module('ngCountries', ['ngRoute', 'ngAnimate', 'viewsModule'])
 			}
 		})
 		.then(function(response) {
+			console.log('response!');
+			console.log(response);
+
 			return $q.when(response.data.geonames);
 		});
 	})
